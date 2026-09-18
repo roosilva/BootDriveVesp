@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Lista de Carros</title>
+
+    <link th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}" 
+            rel="stylesheet" />
+
 </head>
 <body>
     <div class="card" style="margin: 10px">
@@ -19,9 +23,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     <tr>
                         <td>0</td>
                         <td>HSC-3456</td>
+                    </tr>
+
+                    <tr th:each="carro : ${carros}">
+                        <td th:text="${carro.id}"></td>
+                        <td th:text="${carro.placa}"></td>
                     </tr>
                    
                 </tbody>
