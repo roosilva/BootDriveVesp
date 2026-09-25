@@ -3,20 +3,26 @@ package br.edu.ifms.frameworks.bootdrive.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifms.frameworks.bootdrive.model.Carro;
+import br.edu.ifms.frameworks.bootdrive.repository.Carros;
 
 @Controller 
 public class CarrosController {
+
+        @Autowired 
+        private Carros carros;
 
         @GetMapping("/carros")
         public ModelAndView listar() {
             ModelAndView modelAndView = new ModelAndView("ListaCarros");
             
             modelAndView.addObject("carros", buscarCarros());
+            modelAndView.addObject("carrosRepository", carros.findAll());
 
             for (Carro carro : buscarCarros()) {
                 System.out.println("Id: " + carro.getId() + 
